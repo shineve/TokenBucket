@@ -112,8 +112,8 @@ removeTokens(count: number): Promise<number> | number {
     this.refillTokens();
 
     if (count > this.tokens) {
-			throw new Error('TooManyRequests');
-		}
+      throw new Error('TooManyRequests');
+    }
 
     this.tokens -= count;
     return this.tokens;
