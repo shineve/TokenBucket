@@ -51,6 +51,8 @@ export class TokenBucket {
   tryRemoveTokens(count: number): boolean {
     if (count > this.bucketSize) return false;
 
+    this.refillTokens();
+
     if (count > this.tokens) return false;
 
     return true;
