@@ -84,12 +84,12 @@ export class TokenBucket {
 
   refillTokens(): boolean {
     const now = Date.now();
-    const deltaMS = Math.max(now - this.lastRefillTimestamp, 0);
+    const duration = Math.max(now - this.lastRefillTimestamp, 0);
     this.lastRefillTimestamp = now;
 
-    const refillAmount = Math.floor(deltaMS * (this.tokensPerInterval / this.interval));
-    const prevContent = this.tokens;
+    const refillAmount = Math.floor(duration * (this.tokensPerInterval / this.interval));
+    const prevTokens = this.tokens;
     this.tokens = Math.min(this.tokens + refillAmount, this.bucketSize);
-    return Math.floor(this.tokens) > Math.floor(prevContent);
+    return this.tokens > prevTokens;
   }
 }
